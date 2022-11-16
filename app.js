@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");
 app.use(express.static('public'))
 
-let items = [];
+let items = ["Wake up at 8:00 in the morning","Study for 1 hour before breakfast","Have breakfast","Study for 2 more hours"];
 
 app.get("/",function(req,res){
     let day         =   new Date();
@@ -66,5 +66,5 @@ app.listen(8800,function(){
     <li class="myList-style"><%= myList[i] %></li>
   <%}%>
     we put "<%" start of every line which have js script and put "%>" to end of every line as well.
-     
+
 */

@@ -34,15 +34,8 @@
             text-shadow: 2px 2px 2px #333;
             color:#f70;
         }
-        p{
-            text-align: center;
-            padding: 2% 1%;
-            margin-top:2%;
-            margin-left:2%;
-            font-weight: bold;
-            font-family: monospace,sans-serif;
-            line-height: 1.5;
-            font-size:1.5rem;
+        .card-text{
+            color:#333;
         }
         img{
             position: relative;
@@ -52,7 +45,7 @@
             margin:auto;
             margin-top:2%;
         }
-        h5,p{
+        h5{
             color:#333;
         }
         .submit{
@@ -74,10 +67,13 @@
         .list-group-item:nth-child(odd){
             background-color:#ddd;
         }
+        
         .list-group-item:hover{
             background-color: #333;
             color:#f1f1f1;
         }
+       
+        
         h2{
             padding:1%;
             background-color: rgb(11, 243, 204);
@@ -87,6 +83,18 @@
             margin-bottom: 2%;
             box-shadow: 0px 5px 12px 5px #333;
         }
+        .list-group-item input:checked + span{
+            text-decoration: line-through;
+            text-decoration-color:#f1f1f1;
+            opacity: 0.5;
+        }
+        input[type="checkbox"]{
+            margin-right:10px;
+        }
+        .list-group-item{
+            padding-top:10px;
+        }
+        
     </style>
 </head>
 <body>
@@ -96,25 +104,18 @@
         <div class="card" style="width: 38rem;margin:auto; margin-bottom:2%">
             <img src="img.png" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 style="color:#f90;font-weight:bold;" class="card-title">Today's List</h5>
+              <h5 style="color:#f90;font-weight:bold;" class="card-title"><%= theDay %>  Work Schedule</h5>
               <p class="card-text">I have a lot of things to do today.</p>
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Wake up at 8:00 in the morning</li>
-              <li class="list-group-item">Study for 1 hour before breakfast</li>
-              <li class="list-group-item">Have breakfast</li>
-              <li class="list-group-item">Study for 2 more hours</li>
-              <li class="list-group-item">take a break for an hour</li>
-              <li class="list-group-item">Study for 2 more hours</li>
-
-              <% for(let i=0;i<newItem.length;i++){ %>
-                <li class="list-group-item"><%= newItem[i] %></li>
+            <ul class="list-group list-group-flush">              
+              <% for(let i=0;i<newItem.length;i++){ %>                
+                <li class="list-group-item"><input class="form-check-input" type="checkbox" ><span><%= newItem[i] %></span></li>
               <% } %>
 
             </ul>
             <div class="card-body">
               <label style="color:#f90;font-weight:bold;" for="inputText">Enter your checklist</label>
-              <input name="addedItem" id="inputText" type="text" class="form-control" placeholder="Add New Item">
+              <input name="addedItem" id="inputText" type="text" class="form-control" placeholder="Add New Item" autocomplete="off">
               <button class="btn btn-dark submit" name="submit" type="submit" value="send">Send</button>
               <button class="btn btn-dark submit" name="submit" type="submit" value="delete">Clear List</button>
             </div>
