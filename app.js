@@ -6,32 +6,51 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");
 app.use(express.static('public'))
 
-let items = ["Wake up at 8:00 in the morning","Study for 1 hour before breakfast","Have breakfast","Study for 2 more hours"];
+let items       =   ["Wake up at 8:00 in the morning","Study for 1 hour before breakfast","Have breakfast","Study for 2 more hours"];
+let workItems   =   [];
 
-app.get("/",function(req,res){
-    let day         =   new Date();
-    let options     =   {
-        weekday:"long",
-        day:"numeric",
-        month:"long"
-    };
-    let currentDay = day.toLocaleDateString("us-US",options);
- 
-    res.render("index",{theDay:currentDay,newItem:items})
+let day         =   new Date();
+let options     =   {
+    weekday:"long",
+    day:"numeric",
+    month:"long"
+};
+let currentDay = day.toLocaleDateString("us-US",options);
+
+app.get("/",function(req,res){ 
+    res.render("index",{theDay:currentDay,newItem:items,workTitle:"Schedule"})
+})
+app.get("/about",function(req,res){
+    res.render("about")
 })
 app.post("/",function(req,res){
-    let item    =   req.body.addedItem;
-    let btn     =   req.body.submit;
-    items.push(item);
-    if(btn ==="send"){
+    let item        =   req.body.addedItem;
+    let btnSend     =   req.body.submit;
+    let btnDel      =   req.body.submit;
+    console.log(req.body);
+    if(btnSend ==="Schedule"){
+        items.push(item);
         res.redirect("/");
     }
-    else if(btn === "delete"){
+    else if(btnDel === "delSchedule"){
         items = [];
         res.redirect("/");
     }
+    if(btnSend ==="Work"){
+        workItems.push(item);
+        res.redirect("/work");
+    }
+    else if(btnDel === "delWork"){
+        workItems = [];
+        res.redirect("/work");
+    }
     
 })
+
+app.get("/work",function(req,res){
+    res.render("index",{theDay:currentDay,newItem:workItems,workTitle:"Work"})
+})
+
 
 app.listen(8800,function(){
     console.log("the server is running on port 8800");
@@ -67,4 +86,5 @@ app.listen(8800,function(){
   <%}%>
     we put "<%" start of every line which have js script and put "%>" to end of every line as well.
 
+    if we have 2 different page like "/" is main and "/work" second page we must use only one app.post response to page and we use res.redirect 
 */

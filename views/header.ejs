@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <script src="https://kit.fontawesome.com/28f6175930.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            min-height: 100vh;
+            background-image: linear-gradient(15deg, rgb(122, 220, 245) 50%,rgb(117, 0, 252) 50%) ;
+            color:aliceblue;
+        }
+        .about-section {
+            padding: 50px;
+            text-align: center;
+            background-color: #474e5d;
+            color: white;
+            }
+        h1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding:2% 1%;
+            text-shadow: 4px 4px 4px #333;
+            font-size:5rem;
+            color:crimson;
+        }
+        h2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding:2% 1%;
+            text-shadow: 2px 2px 2px #333;
+            color:#f70;
+        }
+        .card-text{
+            color:#333;
+        }
+        img{
+            position: relative;
+            padding:2%;
+            max-width: 10rem;
+            text-align: center;
+            margin:auto;
+            margin-top:2%;
+        }
+        h5{
+            color:#333;
+        }
+        .submit{
+            position:relative;
+            margin-left:20%;
+            margin-right: auto;
+            padding:2%;
+            padding-right: 2rem;
+            padding-left:2rem;
+            margin-top:2%;
+        }
+        .form-control{
+            margin-bottom:1%;
+        }
+        .card{
+            background-color: #f1f1f1;
+            box-shadow: 0px 3px 3px 3px rgba(0,0,0,0.3);
+        }
+        .list-group-item:nth-child(odd){
+            background-color:#ddd;
+        }
+        
+        .list-group-item:hover{
+            background-color: #333;
+            color:#f1f1f1;
+        }
+       
+        
+        h2{
+            padding:1%;
+            background-color: rgb(11, 243, 204);
+            width: 30vw;
+            border-radius: 10px;
+            margin: auto;
+            margin-bottom: 2%;
+            box-shadow: 0px 5px 12px 5px #333;
+        }
+        .list-group-item input:checked + span{
+            text-decoration: line-through;
+            text-decoration-color:#f1f1f1;
+            opacity: 0.5;
+        }
+        input[type="checkbox"]{
+            margin-right:10px;
+        }
+        .list-group-item{
+            padding-top:10px;
+        }
+        footer{
+            display:block;
+            position:absolute;
+            bottom:0;
+            width: 100%;
+            height: 10rem;
+            
+        }
+        
+    </style>
+</head>
+<body>
