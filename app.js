@@ -1,13 +1,45 @@
 const express       =   require("express");
 const bodyParser    =   require("body-parser");
 const app           =   express();
+const mongoose      =   require("mongoose");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");
 app.use(express.static('public'))
 
-let items       =   ["Wake up at 8:00 in the morning","Study for 1 hour before breakfast","Have breakfast","Study for 2 more hours"];
-let workItems   =   [];
+const myItems       =   ["Wake up at 8:00 in the morning","Study for 1 hour before breakfast","Have breakfast","Study for 2 more hours"];
+let workItems       =   [];
+
+// database connection
+mongoose.connect("mongodb://localhost:27017/todoListDB",{useNewUrlParser: true});
+
+// creating scheme of object that we wanted.
+const itemSchema = new mongoose.Schema({
+    name: String
+})
+
+// creating model for db
+const Item = mongoose.model("Item",itemSchema);
+
+// my object for db
+const rout1 = new Item({
+    name:"Woke up 7:30 pm"
+})
+const rout2 = new Item({
+    name:"1 Hour work out before breakfast"
+})
+const rout3 = new Item({
+    name:"get breakfast"
+})
+const rout4 = new Item({
+    name:"work 2 hour more and get 30min cafee break"
+})
+const rout5 = new Item({
+    name:"work 3 more hour before lunch"
+})
+// creating a list that consist of our items
+const defaultItems = [rout1,rout2,rout3,rout4,rout5]
+
 
 let day         =   new Date();
 let options     =   {
@@ -17,9 +49,28 @@ let options     =   {
 };
 let currentDay = day.toLocaleDateString("us-US",options);
 
-app.get("/",function(req,res){ 
-    res.render("index",{theDay:currentDay,newItem:items,workTitle:"Schedule"})
+app.get("/",function(req,res){
+    Item.find({},function(err,items){
+
+        if(items.length === 0){
+            Item.insertMany(defaultItems,function(err,items){
+                if(err){
+                    console.log(err);
+                    res.render("index",{theDay:currentDay,newItem:myItems,workTitle:"Schedule"});
+                }else{
+                    console.log("succesfully update items");
+                }
+            })
+            res.redirect("/");
+        }
+        else if(err){
+            console.log(err);
+        }
+        
+        res.render("index",{theDay:currentDay,newItem:items,workTitle:"Schedule"});
+    }) 
 })
+
 app.get("/about",function(req,res){
     res.render("about")
 })

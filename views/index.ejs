@@ -10,14 +10,14 @@
             </div>
             <ul class="list-group list-group-flush">              
               <% for(let i=0;i<newItem.length;i++){ %>                
-                <li class="list-group-item"><input class="form-check-input" type="checkbox" ><span><%= newItem[i] %></span></li>
+                <li class="list-group-item"><input class="form-check-input" type="checkbox" ><span><%= newItem[i].name %></span></li>
               <% } %>
 
             </ul>
             <div class="card-body">
               <label style="color:#f90;font-weight:bold;" for="inputText">Enter your checklist</label>
               <input name="addedItem" id="inputText" type="text" class="form-control" placeholder="Add New Item" autocomplete="off">
-              <button class="btn btn-dark submit" name="submit" type="submit" value=<%=workTitle%>>Send</button>
+              <button class="btn btn-dark submit" name="submit" type="submit" value=<%=workTitle%>>Add</button>
               <button class="btn btn-dark submit" name="submit" type="submit" value=<%='del' + workTitle%>>Clear List</button>
             </div>
         </div>
