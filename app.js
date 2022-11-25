@@ -8,7 +8,7 @@ app.set("view engine","ejs");
 app.use(express.static('public'))
 
 const myItems       =   ["Wake up at 8:00 in the morning","Study for 1 hour before breakfast","Have breakfast","Study for 2 more hours"];
-let workItems       =   [];
+const workItems       =   [];
 
 // database connection
 mongoose.connect("mongodb://localhost:27017/todoListDB",{useNewUrlParser: true});
